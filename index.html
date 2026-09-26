@@ -218,7 +218,8 @@
     font-family: var(--font-mono); font-size: 13px; padding: 14px; line-height: 1.5;
   }
   .editor-textarea.hidden { display: none; }
-  .editor-toolbar { display: flex; gap: 10px; margin: 12px 0; }
+  .editor-toolbar { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
+  .editor-hint { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-soft); }
   .preview-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fff; }
   .preview-head { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); padding: 7px 12px; border-bottom: 1px solid var(--border); background: var(--paper); }
   .preview-frame { display: block; width: 100%; height: 260px; border: none; background: #fff; }
@@ -328,6 +329,39 @@
           exampleLang: 'html',
           example: '<ul>\n  <li>Milk</li>\n  <li>Eggs</li>\n</ul>\n<table>\n  <tr><th>Day</th><th>Task</th></tr>\n  <tr><td>Mon</td><td>Water plants</td></tr>\n</table>',
           sandbox: { type: 'html', starter: { html: '<ul>\n  <li>First item</li>\n  <li>Second item</li>\n</ul>' } }
+        },
+        {
+          id: 'h5', title: 'Forms and Inputs',
+          content: [
+            'Forms collect input from a person and typically send it somewhere. The `<form>` element wraps everything, and each field usually has a matching `<label>` so people know what to type.',
+            '`<input>` comes in many flavors set by its `type` attribute, `text`, `email`, `password`, `checkbox`, and more. Like `<img>`, it never has a closing tag.',
+            'A `<button>` triggers the form. Connect a label to its input with `for` and a matching `id`, so clicking the label focuses the field.'
+          ],
+          exampleLang: 'html',
+          example: '<form>\n  <label for="name">Name</label>\n  <input type="text" id="name">\n  <button type="submit">Send</button>\n</form>',
+          sandbox: { type: 'html', starter: { html: '<form>\n  <label for="email">Email</label>\n  <input type="email" id="email">\n  <button type="submit">Sign up</button>\n</form>' } }
+        },
+        {
+          id: 'h6', title: 'Semantic HTML5 Elements',
+          content: [
+            'Semantic elements describe the role of a section, not just its box. `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, and `<footer>` all behave like `<div>` visually, but they tell browsers and screen readers what each part is for.',
+            'A `<nav>` wraps primary navigation links. A `<main>` wraps the one central content area of a page, used only once. An `<article>` is a self-contained piece, such as a blog post, that would make sense on its own.',
+            'Reaching for a semantic tag before a generic `<div>` makes a page easier to navigate with assistive technology, and easier for another developer to read.'
+          ],
+          exampleLang: 'html',
+          example: '<header>\n  <h1>My Blog</h1>\n  <nav><a href="#">Home</a></nav>\n</header>\n<main>\n  <article>\n    <h2>First Post</h2>\n    <p>Welcome to the blog.</p>\n  </article>\n</main>',
+          sandbox: { type: 'html', starter: { html: '<header>\n  <h1>My Site</h1>\n  <nav><a href="#">Home</a> <a href="#">About</a></nav>\n</header>\n<main>\n  <article>\n    <h2>A Post Title</h2>\n    <p>Some content here.</p>\n  </article>\n</main>' } }
+        },
+        {
+          id: 'h7', title: 'Divs, Spans, and Attributes',
+          content: [
+            '`<div>` is a generic block-level container with no meaning of its own, useful for grouping content to style or position as a unit. `<span>` is the same idea, but inline, for wrapping a small piece of text inside a sentence.',
+            'The `class` attribute can be reused across many elements to style them the same way; `id` should be unique to one element on the page, often used as a target for links or scripts.',
+            'A `data-*` attribute stores extra information on an element that is not meant to be shown, such as `data-user-id="42"`, which JavaScript can read later.'
+          ],
+          exampleLang: 'html',
+          example: '<div class="card">\n  <span data-user-id="42">Ada Lovelace</span>\n</div>',
+          sandbox: { type: 'html', starter: { html: '<div class="card">\n  <span data-role="admin">Grace Hopper</span>\n</div>' } }
         }
       ],
       quiz: [
@@ -335,7 +369,10 @@
         { question: 'Which heading tag represents the most important heading on a page?', options: ['<h6>', '<h1>', '<head>', '<header>'], correct: 1, explanation: 'Headings run from most important, `<h1>`, to least, `<h6>`.' },
         { question: 'Which tag does not need a closing tag?', options: ['<p>', '<div>', '<img>', '<ul>'], correct: 2, explanation: '`<img>` is a self-contained element with no closing tag.' },
         { question: 'What attribute on `<a>` sets the link destination?', options: ['src', 'href', 'link', 'target-url'], correct: 1, explanation: '`href` points to where the link goes.' },
-        { question: 'Where must an `<li>` element be placed to be valid?', options: ['Directly in `<body>`', 'Inside a `<ul>` or `<ol>`', 'Inside a `<table>`', 'Inside a `<head>`'], correct: 1, explanation: 'List items only make sense nested inside a list container.' }
+        { question: 'Where must an `<li>` element be placed to be valid?', options: ['Directly in `<body>`', 'Inside a `<ul>` or `<ol>`', 'Inside a `<table>`', 'Inside a `<head>`'], correct: 1, explanation: 'List items only make sense nested inside a list container.' },
+        { question: 'Which attribute on a `<label>` connects it to a specific `<input>`?', options: ['class', 'name', 'for', 'href'], correct: 2, explanation: '`for` should match the input `id`, so clicking the label focuses that field.' },
+        { question: 'Which element is meant to wrap the one central content area of a page?', options: ['<aside>', '<main>', '<footer>', '<span>'], correct: 1, explanation: '<main> wraps the one central content area of a page, used only once.' },
+        { question: 'What is `data-user-id="42"` an example of?', options: ['A class attribute', 'A custom data attribute', 'A required HTML tag', 'A CSS selector'], correct: 1, explanation: 'A `data-*` attribute stores extra information for JavaScript to read later.' }
       ]
     },
     {
@@ -397,6 +434,48 @@
             html: '<div class="row">\n  <div class="item">One</div>\n  <div class="item">Two</div>\n  <div class="item">Three</div>\n</div>',
             css: '.row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 12px;\n  background: #eef2f7;\n  padding: 12px;\n}\n.item {\n  background: #2965F1;\n  color: white;\n  padding: 8px 16px;\n  border-radius: 4px;\n}'
           } }
+        },
+        {
+          id: 'c5', title: 'Positioning',
+          content: [
+            'The `position` property changes how an element is placed. `static` is the default, following normal document flow. `relative` keeps an element in flow but lets `top`, `left`, `right`, and `bottom` nudge it from where it would otherwise sit.',
+            '`absolute` removes an element from flow entirely and positions it relative to its nearest positioned ancestor, an element with any `position` other than `static`. `fixed` positions it relative to the browser window itself, staying put even when the page scrolls.',
+            '`z-index` decides stacking order when elements overlap. A higher number sits on top of a lower one, but it only works on positioned elements.'
+          ],
+          exampleLang: 'css',
+          example: '.badge {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n  background: crimson;\n  color: white;\n}',
+          sandbox: { type: 'html-css', starter: {
+            html: '<div class="container">\n  <span class="badge">New</span>\n</div>',
+            css: '.container {\n  position: relative;\n  width: 220px;\n  height: 100px;\n  background: #eef2f7;\n}\n.badge {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n  background: crimson;\n  color: white;\n  padding: 2px 8px;\n  border-radius: 3px;\n}'
+          } }
+        },
+        {
+          id: 'c6', title: 'CSS Grid Basics',
+          content: [
+            '`display: grid;` turns an element into a grid container, arranging children into rows and columns instead of a single row like flexbox.',
+            '`grid-template-columns` defines the columns. `grid-template-columns: 1fr 1fr 1fr;` creates three equal columns, and `1fr` means one fraction of the remaining space.',
+            '`gap` spaces out both rows and columns at once. Grid and flexbox solve different problems, reach for grid when content needs to line up in two dimensions, and flexbox for a single row or column.'
+          ],
+          exampleLang: 'css',
+          example: '.gallery {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  gap: 10px;\n}',
+          sandbox: { type: 'html-css', starter: {
+            html: '<div class="gallery">\n  <div class="tile">1</div>\n  <div class="tile">2</div>\n  <div class="tile">3</div>\n</div>',
+            css: '.gallery {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  gap: 10px;\n}\n.tile {\n  background: #2965F1;\n  color: white;\n  padding: 20px;\n  text-align: center;\n  border-radius: 4px;\n}'
+          } }
+        },
+        {
+          id: 'c7', title: 'Pseudo-classes and Pseudo-elements',
+          content: [
+            'A pseudo-class styles an element in a particular state without needing extra markup. `:hover` applies while the mouse is over it, and `:focus` applies while an input is active.',
+            '`:nth-child(2)` selects an element by its position among its siblings, useful for styling every other row in a list without adding a class to each one.',
+            'A pseudo-element like `::before` inserts generated content before an element, often used for small decorative marks. It needs a `content` value, even if that value is empty.'
+          ],
+          exampleLang: 'css',
+          example: 'button:hover {\n  background: #1c4e8a;\n}\nli:nth-child(2) {\n  color: crimson;\n}',
+          sandbox: { type: 'html-css', starter: {
+            html: '<button>Hover me</button>\n<ul>\n  <li>One</li>\n  <li>Two</li>\n  <li>Three</li>\n</ul>',
+            css: 'button {\n  background: #2965F1;\n  color: white;\n  padding: 8px 14px;\n  border: none;\n  border-radius: 4px;\n}\nbutton:hover {\n  background: #1c4e8a;\n}\nli:nth-child(2) {\n  color: crimson;\n}'
+          } }
         }
       ],
       quiz: [
@@ -404,7 +483,10 @@
         { question: 'In the box model, what sits directly outside the border?', options: ['Padding', 'Margin', 'Content', 'Outline'], correct: 1, explanation: 'From inside out: content, padding, border, margin.' },
         { question: 'What does `box-sizing: border-box;` change?', options: ['Makes the box round', 'Includes padding and border in the declared width and height', 'Removes the border', 'Centers the box'], correct: 1, explanation: 'Without it, padding and border add to the declared size instead of fitting inside it.' },
         { question: 'Which property turns an element into a flex container?', options: ['flex: true;', 'display: flex;', 'position: flex;', 'layout: flex;'], correct: 1, explanation: '`display: flex;` is the property that enables flexbox layout.' },
-        { question: 'Which `justify-content` value spreads flex children with equal gaps between them, not at the edges?', options: ['flex-start', 'center', 'space-between', 'stretch'], correct: 2, explanation: '`space-between` pushes the first and last items to the edges and spaces the rest evenly.' }
+        { question: 'Which `justify-content` value spreads flex children with equal gaps between them, not at the edges?', options: ['flex-start', 'center', 'space-between', 'stretch'], correct: 2, explanation: '`space-between` pushes the first and last items to the edges and spaces the rest evenly.' },
+        { question: 'Which position value removes an element from normal flow and positions it relative to the browser window itself?', options: ['relative', 'static', 'fixed', 'inherit'], correct: 2, explanation: '`fixed` positions relative to the browser window and stays put when the page scrolls.' },
+        { question: 'Which property arranges children into rows and columns at once?', options: ['display: flex;', 'display: grid;', 'display: block;', 'display: inline;'], correct: 1, explanation: 'Grid lines content up in two dimensions, rows and columns together.' },
+        { question: 'Which selector styles every second list item without adding a class to it?', options: [':hover', '::before', ':nth-child(2)', ':focus'], correct: 2, explanation: '`:nth-child(2)` targets an element by its position among its siblings.' }
       ]
     },
     {
@@ -466,6 +548,48 @@
             html: '<button id="go">Click me</button>\n<p id="msg">Waiting...</p>',
             js: 'const btn = document.querySelector("#go");\nbtn.addEventListener("click", () => {\n  document.querySelector("#msg").textContent = "Clicked!";\n});'
           } }
+        },
+        {
+          id: 'j5', title: 'Arrays',
+          content: [
+            'An array holds an ordered list of values in square brackets, `const colors = ["red", "green", "blue"];`. Each value has an index, starting at 0, so `colors[0]` is `"red"`.',
+            '`.push(value)` adds to the end of an array, and `.length` reports how many items it holds.',
+            'A `for` loop or the array method `.forEach(fn)` can visit every item in turn. `.forEach` calls the given function once per item, passing the item in.'
+          ],
+          exampleLang: 'js',
+          example: 'const colors = ["red", "green", "blue"];\ncolors.push("purple");\ncolors.forEach((c) => console.log(c));',
+          sandbox: { type: 'js', starter: {
+            html: '<p>Open the console below and click Run.</p>',
+            js: 'const colors = ["red", "green", "blue"];\ncolors.push("purple");\ncolors.forEach((c) => console.log(c));'
+          } }
+        },
+        {
+          id: 'j6', title: 'Objects',
+          content: [
+            'An object groups related values under named keys, `const user = { name: "Ada", age: 28 };`. Access a value with dot notation, `user.name`, or bracket notation, `user["name"]`.',
+            'A new key can be added, or an existing one changed, by assigning to it directly, `user.age = 29;`.',
+            'Objects can hold functions too, called methods. Inside a method, `this` refers to the object it was called on.'
+          ],
+          exampleLang: 'js',
+          example: 'const user = { name: "Ada", age: 28 };\nuser.age = 29;\nconsole.log(user.name + " is " + user.age);',
+          sandbox: { type: 'js', starter: {
+            html: '<p>Open the console below and click Run.</p>',
+            js: 'const user = { name: "Ada", age: 28 };\nuser.age = 29;\nconsole.log(user.name + " is " + user.age);'
+          } }
+        },
+        {
+          id: 'j7', title: 'Events Beyond Click',
+          content: [
+            'Elements fire more than click events. `input` fires every time a text field changes, `keydown` fires on any key press, and `submit` fires when a form is submitted.',
+            'Inside a form handler, `event.preventDefault()` stops the browser from reloading the page, which is the default behavior for a form submission.',
+            'The `event` object passed to a handler describes what happened. For a keyboard event, `event.key` reports which key was pressed.'
+          ],
+          exampleLang: 'js',
+          example: 'const form = document.querySelector("#myForm");\nform.addEventListener("submit", (event) => {\n  event.preventDefault();\n  console.log("Form submitted");\n});',
+          sandbox: { type: 'js', starter: {
+            html: '<form id="myForm">\n  <input type="text" placeholder="Type something">\n  <button type="submit">Submit</button>\n</form>',
+            js: 'const form = document.querySelector("#myForm");\nform.addEventListener("submit", (event) => {\n  event.preventDefault();\n  console.log("Form submitted");\n});'
+          } }
         }
       ],
       quiz: [
@@ -473,7 +597,10 @@
         { question: 'What does a function return if it has no `return` statement?', options: ['0', 'An empty string', 'undefined', 'An error'], correct: 2, explanation: 'A function without `return` gives back `undefined`.' },
         { question: 'How many times does `for (let i = 0; i < 4; i++)` run its body?', options: ['3', '4', '5', 'Infinite'], correct: 1, explanation: 'It runs for i = 0, 1, 2, 3, four times in total.' },
         { question: 'Which method finds the first element matching a CSS selector?', options: ['document.getElementById only', 'document.querySelector', 'document.findElement', 'document.select'], correct: 1, explanation: '`document.querySelector` accepts any CSS selector and returns the first match.' },
-        { question: 'Which line makes a button respond to clicks?', options: ['btn.onHover(fn)', 'btn.addEventListener("click", fn)', 'btn.click = fn', 'btn.run(fn)'], correct: 1, explanation: '`addEventListener` attaches a handler for a given event type.' }
+        { question: 'Which line makes a button respond to clicks?', options: ['btn.onHover(fn)', 'btn.addEventListener("click", fn)', 'btn.click = fn', 'btn.run(fn)'], correct: 1, explanation: '`addEventListener` attaches a handler for a given event type.' },
+        { question: 'What does `.push(value)` do to an array?', options: ['Removes the first item', 'Adds a value to the end', 'Sorts the array', 'Empties the array'], correct: 1, explanation: '`.push` adds one or more values to the end of an array.' },
+        { question: 'How do you read the `name` key on an object called `user`?', options: ['user->name', 'user.name', 'user::name', 'user(name)'], correct: 1, explanation: 'Dot notation, `user.name`, reads a key from an object.' },
+        { question: 'What does `event.preventDefault()` do inside a form submit handler?', options: ['Deletes the form', 'Stops the browser from reloading the page', 'Cancels all future events', 'Clears the input fields'], correct: 1, explanation: 'It stops the default browser behavior for that event, such as a full page reload on submit.' }
       ]
     },
     {
@@ -523,6 +650,39 @@
           exampleLang: 'html',
           example: '<button class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded md:text-lg">\n  Hover or resize me\n</button>',
           sandbox: { type: 'tailwind', starter: { html: '<button class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">\n  Hover over me\n</button>' } }
+        },
+        {
+          id: 't5', title: 'Typography Utilities',
+          content: [
+            '`text-` sets font size on a scale, `text-sm`, `text-lg`, `text-2xl`, and larger. `font-` sets weight, `font-normal`, `font-medium`, `font-bold`.',
+            'Text color uses the same color palette as backgrounds, `text-gray-600`, `text-blue-600`, and so on. `text-center`, `text-left`, and `text-right` control alignment.',
+            '`leading-` controls line height and `tracking-` controls letter spacing, both useful for making a heading feel tighter or a paragraph easier to read.'
+          ],
+          exampleLang: 'html',
+          example: '<h2 class="text-2xl font-bold text-slate-800">\n  A Styled Heading\n</h2>\n<p class="text-sm text-slate-500">\n  Supporting text underneath.\n</p>',
+          sandbox: { type: 'tailwind', starter: { html: '<h2 class="text-2xl font-bold text-slate-800">\n  A Styled Heading\n</h2>\n<p class="text-sm text-slate-500">\n  Try changing the size, weight, or color classes.\n</p>' } }
+        },
+        {
+          id: 't6', title: 'Borders, Backgrounds, and Shadows',
+          content: [
+            '`border` adds a default border, and `border-2` or `border-4` set its thickness. Pair it with a color like `border-blue-500`.',
+            '`rounded` softens corners, from `rounded-sm` to `rounded-full` for a circle. `bg-` sets a solid background color.',
+            '`shadow-sm` through `shadow-xl` add depth with a drop shadow, a quick way to lift a card off the page.'
+          ],
+          exampleLang: 'html',
+          example: '<div class="border-2 border-blue-500 rounded-lg shadow-md p-4 bg-white">\n  A card with a border and shadow.\n</div>',
+          sandbox: { type: 'tailwind', starter: { html: '<div class="border-2 border-blue-500 rounded-lg shadow-md p-4 bg-white">\n  Try changing the border, radius, or shadow classes.\n</div>' } }
+        },
+        {
+          id: 't7', title: 'Building a Component',
+          content: [
+            'Real interfaces combine many utilities on one element. A card might need padding, a background, a border radius, a shadow, and typography utilities all at once.',
+            'Breaking a design into small questions helps, how much space around the content, what background and border, how should the text look, and does anything change on hover.',
+            'There is no single correct set of classes. Different combinations of spacing, color, and typography utilities can all produce a good-looking result.'
+          ],
+          exampleLang: 'html',
+          example: '<div class="max-w-sm p-6 bg-white rounded-lg shadow-md">\n  <h3 class="text-lg font-bold text-slate-800">Card Title</h3>\n  <p class="text-sm text-slate-500 mt-2">A short description goes here.</p>\n  <button class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded">Learn more</button>\n</div>',
+          sandbox: { type: 'tailwind', starter: { html: '<div class="max-w-sm p-6 bg-white rounded-lg shadow-md">\n  <h3 class="text-lg font-bold text-slate-800">Card Title</h3>\n  <p class="text-sm text-slate-500 mt-2">A short description goes here.</p>\n  <button class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded">Learn more</button>\n</div>' } }
         }
       ],
       quiz: [
@@ -530,7 +690,10 @@
         { question: 'What does `p-4` do?', options: ['Sets font size', 'Sets padding on all sides', 'Sets position to fixed', 'Sets a border width'], correct: 1, explanation: '`p-` is the padding utility prefix; `4` is a step on the spacing scale.' },
         { question: 'Which class turns on flexbox layout?', options: ['layout-flex', 'flex', 'display-flex', 'box-flex'], correct: 1, explanation: '`flex` maps to `display: flex;`.' },
         { question: 'What does the `hover:` prefix do?', options: ['Applies a style only above a screen size', 'Applies a style only while the mouse is over the element', 'Applies a style permanently', 'Removes the element on hover'], correct: 1, explanation: 'State prefixes like `hover:` apply their utility only during that state.' },
-        { question: 'What does `md:flex` mean?', options: ['Flex only below medium screens', 'Flex only at medium screens and wider', 'Flex only on mobile', 'It is invalid syntax'], correct: 1, explanation: 'Breakpoint prefixes apply their utility from that screen size upward.' }
+        { question: 'What does `md:flex` mean?', options: ['Flex only below medium screens', 'Flex only at medium screens and wider', 'Flex only on mobile', 'It is invalid syntax'], correct: 1, explanation: 'Breakpoint prefixes apply their utility from that screen size upward.' },
+        { question: 'Which class sets a large, bold heading in Tailwind?', options: ['text-2xl font-bold', 'big-text strong', 'heading-lg', 'font-size-24'], correct: 0, explanation: '`text-` sets size and `font-` sets weight, combined directly as classes.' },
+        { question: 'Which class adds a drop shadow to an element?', options: ['border-md', 'shadow-md', 'rounded-md', 'ring-md'], correct: 1, explanation: '`shadow-` utilities add depth with a drop shadow.' },
+        { question: 'When combining utilities into one component, what decides the right set of classes?', options: ['There is exactly one correct combination', 'Only the color classes matter', 'Different combinations of spacing, color, and typography can all work', 'Utilities cannot be combined'], correct: 2, explanation: 'Many utility combinations can produce a good result; it is a design choice, not a single correct answer.' }
       ]
     }
   ];
@@ -608,11 +771,14 @@
   }
   function highlightJS(src) {
     var s = escapeHtml(src);
+    /* Keyword pass runs first, on plain text with no spans yet. Running it
+       after the other passes made it match the word "class" inside spans
+       like <span class="tok-str">, since "class" is also a JS keyword. */
+    s = s.replace(/\b(const|let|var|function|return|if|else|for|while|true|false|null|undefined|new|class|this|typeof|break|continue|console|document)\b/g,
+      '<span class="tok-kw">$1</span>');
     s = s.replace(/(&quot;.*?&quot;|'.*?')/g, '<span class="tok-str">$1</span>');
     s = s.replace(/(\/\/[^\n]*)/g, '<span class="tok-com">$1</span>');
     s = s.replace(/\b(\d+(\.\d+)?)\b/g, '<span class="tok-num">$1</span>');
-    s = s.replace(/\b(const|let|var|function|return|if|else|for|while|true|false|null|undefined|new|class|this|typeof|break|continue|console|document)\b/g,
-      '<span class="tok-kw">$1</span>');
     return s;
   }
 
@@ -693,6 +859,13 @@
     saveSandbox(lessonKey(course.id, lesson.id), code);
   }
   function scheduleAutoRun() {
+    /* Only auto-run while typing for HTML/CSS sandboxes, which are cheap to
+       re-render. JS sandboxes would re-execute partially-typed code on every
+       keystroke (throwing errors mid-word), and Tailwind sandboxes would
+       reload the CDN script and flicker on every keystroke. Both instead
+       update only on an explicit Run click, on lesson load, and on Reset. */
+    var lesson = currentLesson();
+    if (!lesson || (lesson.sandbox.type !== 'html' && lesson.sandbox.type !== 'html-css')) return;
     clearTimeout(autoRunTimer);
     autoRunTimer = setTimeout(updatePreview, 500);
   }
@@ -866,11 +1039,13 @@
         '<textarea id="editor-html" class="editor-textarea" data-field="html" spellcheck="false">' + escapeHtml(code.html || '') + '</textarea>' +
         '<textarea id="editor-js" class="editor-textarea hidden" data-field="js" spellcheck="false">' + escapeHtml(code.js || '') + '</textarea>';
     }
+    var needsRunHint = (type === 'js' || type === 'tailwind');
     return '' +
       '<div class="editor-card">' + tabs + textareas + '</div>' +
       '<div class="editor-toolbar">' +
         '<button class="btn small primary" data-action="run-sandbox">&#9654; Run</button>' +
         '<button class="btn small ghost" data-action="reset-sandbox">Reset</button>' +
+        (needsRunHint ? '<span class="editor-hint">Click Run to see changes</span>' : '') +
       '</div>' +
       '<div class="preview-card">' +
         '<div class="preview-head">Preview</div>' +
