@@ -1,48 +1,65 @@
 # Draftbench
 
-**Draftbench** is an interactive coding primer designed to help beginners build things and understand why they work. It replaces passive reading with active doing through a structured "Plan & Bench" approach.
+Draftbench is an interactive coding primer for beginners who want to learn web development by doing, not just reading. It turns each topic into a short, guided lesson with a live code bench, a clear explanation of the underlying ideas, and a final inspection challenge to check understanding.
 
-## 📚 The Curriculum
+The project follows a simple philosophy: "Build things. Understand why they work."
 
-Draftbench offers four focused courses that take you from zero to a functioning layout:
+## Curriculum
 
-- **HTML Foundations**: Structure every page with the tags that hold the web together.
-- **CSS Fundamentals**: Give your HTML a look with spacing, color, and layout.
-- **JavaScript Essentials**: Make pages react with variables, logic, and the DOM.
-- **Tailwind CSS**: Style directly in your markup with utility classes.
+Draftbench is organized into four short courses:
 
-## ✨ Key Features
+- HTML Foundations
+- CSS Fundamentals
+- JavaScript Essentials
+- Tailwind CSS
 
-- **Live Sandboxes**: Every lesson includes a "Bench"—an integrated live editor where you can tweak code and see the results instantly.
-- **Inspection Quizzes**: Each course ends with a final inspection quiz to verify your understanding and sign off on the material.
-- **Progress Tracking**: Your progress and your custom sandbox code are saved locally in your browser, so you can pick up right where you left off.
-- **Adaptive Design**: A clean, focused interface with full support for Light and Dark themes.
+Each course is meant to be approachable and hands-on, helping learners move from markup to styling to interaction and modern utility-based styling.
 
-## 🚀 Getting Started
+## Key Features
 
-Draftbench is a static site and requires no installation or build steps.
+- Live sandboxing with an iframe-based preview
+- Guided lessons that teach the why behind the code
+- Final inspection-style quizzes
+- Progress saved in localStorage so learners can continue where they left off
+- Light/Dark theme support with a user override
+- A simple client-side routing experience without a framework
 
-### Running Locally
-1. Clone or download the repository.
-2. Open `index.html` in any modern web browser.
+## How it works
 
-### Recommended: Serving via Static Server
-For the best experience, serve the project using a simple static server:
+Draftbench is a static frontend app built with vanilla HTML, CSS, and JavaScript.
+
+- Lesson content and quiz data live in a central `COURSES` structure inside `index.html`
+- User interactions use event delegation through `data-action` handlers
+- Application state is kept in simple global variables and synchronized with `localStorage`
+- The sandbox renders code updates via `iframe` with `srcdoc`
+
+## Run locally
+
+There is no build step.
+
+Open `index.html` directly in a browser, or serve the folder locally for the best experience:
 
 ```bash
-# Using npx
 npx serve .
-
-# Using Python
+# or
 python3 -m http.server 8000
 ```
 
-## 📁 Project Structure
+Then open the local URL shown by the server.
 
-- `index.html`: The heart of the application. Contains the entire UI, the course data, the routing logic, and the sandbox engine.
-- `README.md`: Project documentation.
-- `LICENSE`: Licensing information.
+## Project structure
 
-## 🛠️ For Contributors
+- `index.html`: The main app, lesson data, rendering logic, route handling, and sandbox system
+- `README.md`: Project overview and run instructions
+- `CLAUDE.md`: AI assistant guidance for contributing and maintaining the project
 
-Draftbench is built using vanilla HTML, CSS, and JavaScript to keep it accessible and fast. All course content is data-driven; to add new lessons or courses, simply update the `COURSES` array in `index.html`.
+## For contributors
+
+Keep the project lightweight and vanilla. Prefer small, readable JavaScript and CSS rather than introducing frameworks or build tooling unless the project explicitly needs them.
+
+When adding content or sandbox examples:
+
+- follow the existing `COURSES` schema
+- keep IDs unique and descriptive
+- ensure new sandbox starters work with the current `buildSrcdoc` logic
+- maintain compatibility with the app's localStorage-based persistence model
