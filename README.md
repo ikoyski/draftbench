@@ -6,12 +6,14 @@ The project follows a simple philosophy: "Build things. Understand why they work
 
 ## Curriculum
 
-Draftbench is organized into four short courses:
+Draftbench is organized into six short courses:
 
 - HTML Foundations
 - CSS Fundamentals
-- JavaScript Essentials
 - Tailwind CSS
+- JavaScript Essentials
+- APIs & Async JavaScript
+- To-Do List Capstone
 
 Each course is meant to be approachable and hands-on, helping learners move from markup to styling to interaction and modern utility-based styling.
 
