@@ -1,36 +1,64 @@
 # CLAUDE.md - Draftbench
 
-## Project Overview
-Draftbench is an interactive coding primer designed to teach the fundamentals of web development. It provides a structured learning path through four short courses: HTML, CSS, JavaScript, and Tailwind CSS. The core philosophy is "Build things. Understand why they work," combining conceptual explanations with an immediate, live coding "bench" (sandbox) and final "inspection" quizzes.
+## Project overview
 
-## Tech Stack
-- **Frontend**: Vanilla HTML5, CSS3, and JavaScript (ES5/ES6).
-- **Styling**: 
-    - Custom CSS implementation with a comprehensive design system using CSS variables.
-    - Theme support: Dynamic Light/Dark mode based on `prefers-color-scheme` and user override stored in `localStorage`.
-    - Tailwind CSS integration for the Tailwind course via CDN.
-- **Key Mechanisms**:
-    - **Sandbox**: Uses `iframe` with the `srcdoc` attribute to render live code updates in isolation.
-    - **Persistence**: `localStorage` is used to track user progress (`db_progress`), save sandbox code (`db_sandbox_{key}`), and remember theme preference (`db_theme`).
-    - **Routing**: Simple client-side state-based routing managed via a `route` object and a `render()` dispatch function.
+Draftbench is an interactive coding primer designed to teach the fundamentals of web development through active practice. The app emphasizes a learning loop of: explain, build, inspect, and repeat.
 
-## Development Patterns
-- **Data-Driven Content**: All courses, lessons, and quiz questions are defined in a central `COURSES` array within `index.html`. Adding new content requires adding objects to this array.
-- **Event Delegation**: Most user interactions are handled by a single global click listener on `document` that checks for `data-action` attributes.
-- **State Management**: Application state is held in global variables (`route`, `progress`, `quizState`) and synchronized with `localStorage`.
-- **Rendering**: A functional rendering approach where `render()` clears the `#app` element and injects new HTML based on the current route.
+The project contains four short courses:
 
-## Build & Run Instructions
-Draftbench is a purely static site with no build step.
-- **Local Development**: Open `index.html` directly in any modern web browser.
-- **Serving**: For a better experience (and to avoid some CORS/security restrictions with iframes in some environments), serve the directory using a static server:
-  ```bash
-  npx serve .
-  # or
-  python3 -m http.server 8000
-  ```
+- HTML
+- CSS
+- JavaScript
+- Tailwind CSS
 
-## Guiding Principles for AI Assistants
-- **Maintaining Simplicity**: The project avoids frameworks and build tools. Keep new features in vanilla JS/CSS unless specifically asked otherwise.
-- **Content Updates**: When adding lessons or quiz questions, follow the schema in the `COURSES` array. Ensure IDs are unique and descriptive.
-- **Sandbox Compatibility**: When creating new sandbox starters, ensure they are compatible with the `buildSrcdoc` logic (handling `html`, `css`, `js`, or `tailwind` types).
+The intended experience is to help beginners move from theory to working code quickly, with each lesson centered on a small, buildable example and a final inspection quiz.
+
+## Tech stack
+
+- Frontend: vanilla HTML5, CSS3, and JavaScript
+- Styling: custom CSS design system with CSS variables and theme support
+- Theme support: light/dark mode via `prefers-color-scheme` plus a saved user override in `localStorage`
+- Tailwind: included for the Tailwind course via CDN
+- Sandbox: `iframe` + `srcdoc` for isolated preview rendering
+- Persistence: `localStorage` stores progress, sandbox code, and theme state
+- Routing: simple client-side routing driven by a `route` object and `render()` dispatcher
+
+## Development patterns
+
+- Data-driven content: course, lesson, and quiz data are defined in the `COURSES` array in `index.html`
+- Event delegation: most UI actions are handled via a single document-level click listener checking `data-action`
+- State management: global variables like `route`, `progress`, and `quizState` are used and synced to storage
+- Rendering: the app clears and re-renders the `#app` container using a functional render flow
+
+## Build and run
+
+Draftbench is a static site with no build process.
+
+For local development:
+
+- open `index.html` directly in a modern browser, or
+- serve the directory with a static HTTP server for the best sandbox behavior
+
+Example commands:
+
+```bash
+npx serve .
+# or
+python3 -m http.server 8000
+```
+
+## Repository conventions
+
+- Keep changes simple and lightweight; avoid frameworks or build tooling unless truly necessary
+- Prefer vanilla JavaScript and CSS for new features
+- If adding course content, follow the existing `COURSES` schema and ensure IDs are unique
+- If creating a sandbox starter, make sure it remains compatible with `buildSrcdoc` and the supported content types (`html`, `css`, `js`, `tailwind`)
+- Preserve the project’s focus on teaching fundamentals through interactive examples rather than abstract complexity
+
+## AI assistant guidelines
+
+- Prefer minimal, focused edits that match the project’s existing structure
+- Avoid introducing dependency-heavy patterns when a native HTML/CSS/JS solution is adequate
+- When changing content, keep lesson flow and quiz structure consistent with the current app design
+- Treat the localStorage-based persistence and sandbox behavior as part of the product’s expected behavior, not as incidental implementation details
+- When modifying or adding content, verify that it still works within the `iframe`-based preview flow and route-driven render model
