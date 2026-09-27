@@ -4,12 +4,14 @@
 
 Draftbench is an interactive coding primer designed to teach the fundamentals of web development through active practice. The app emphasizes a learning loop of: explain, build, inspect, and repeat.
 
-The project contains four short courses:
+The project contains six short courses:
 
 - HTML
 - CSS
-- JavaScript
 - Tailwind CSS
+- JavaScript
+- APIs & Async JavaScript
+- To-Do List Capstone
 
 The intended experience is to help beginners move from theory to working code quickly, with each lesson centered on a small, buildable example and a final inspection quiz.
 
