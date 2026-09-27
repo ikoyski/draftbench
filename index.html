@@ -490,6 +490,99 @@
       ]
     },
     {
+      id: 'tailwind', title: 'Tailwind CSS', color: '#0EA5C4',
+      description: 'Style directly in your markup with utility classes.',
+      lessons: [
+        {
+          id: 't1', title: 'Utility-First Basics',
+          content: [
+            'Tailwind skips writing custom CSS files. Instead, elements are styled by adding utility classes directly in the HTML, `class="p-4 bg-blue-500 text-white"`.',
+            'Each utility does one small thing: `p-4` sets padding, `bg-blue-500` sets a background color, `text-white` sets text color. Many small classes combine instead of one invented class name.',
+            'This can feel verbose at first, but it means rarely leaving the HTML to make a style change.'
+          ],
+          exampleLang: 'html',
+          example: '<button class="px-4 py-2 bg-blue-500 text-white rounded">\n  Click me\n</button>',
+          sandbox: { type: 'tailwind', starter: { html: '<button class="px-4 py-2 bg-blue-500 text-white rounded">\n  Click me\n</button>' } }
+        },
+        {
+          id: 't2', title: 'Spacing and Sizing',
+          content: [
+            'Padding uses `p-` for all sides, `px-` and `py-` for horizontal and vertical, or `pt-`, `pr-`, `pb-`, `pl-` for one side. Margin works the same way with `m-`.',
+            'The number after the dash is a step on the spacing scale, not a pixel count directly. `p-4` is 1rem (16px), `p-8` is 2rem.',
+            'Width and height use `w-` and `h-`, including fractions like `w-1/2` for 50 percent and fixed steps like `w-64`.'
+          ],
+          exampleLang: 'html',
+          example: '<div class="w-64 p-6 m-4 bg-slate-100">\n  A box with width, padding, and margin.\n</div>',
+          sandbox: { type: 'tailwind', starter: { html: '<div class="w-64 p-6 m-4 bg-slate-100 rounded">\n  Try changing the width and padding classes.\n</div>' } }
+        },
+        {
+          id: 't3', title: 'Flexbox and Grid with Tailwind',
+          content: [
+            '`flex` turns on flexbox, the same as `display: flex;` in plain CSS. Pair it with `justify-between`, `items-center`, or `gap-4` to arrange children.',
+            '`grid` turns on CSS grid. `grid-cols-3` creates three equal columns, and `gap-4` spaces them out.',
+            'These map closely to plain CSS flexbox and grid properties. Tailwind is mostly a shorthand, not a new layout system.'
+          ],
+          exampleLang: 'html',
+          example: '<div class="flex justify-between items-center gap-4">\n  <div class="bg-sky-500 text-white p-4">One</div>\n  <div class="bg-sky-500 text-white p-4">Two</div>\n</div>',
+          sandbox: { type: 'tailwind', starter: { html: '<div class="flex justify-between items-center gap-4">\n  <div class="bg-sky-500 text-white p-4 rounded">One</div>\n  <div class="bg-sky-500 text-white p-4 rounded">Two</div>\n</div>' } }
+        },
+        {
+          id: 't4', title: 'Responsive Design and States',
+          content: [
+            'Prefix any utility with a breakpoint to apply it only at that size and above, `md:flex` turns on flex layout only on medium screens and wider.',
+            'State prefixes work the same way. `hover:bg-blue-700` changes the background only while hovering, and `focus:ring-2` adds a ring when an input is focused.',
+            'Because these are just classes, several can stack: `bg-blue-500 hover:bg-blue-700 md:text-lg` combines a base style, a hover state, and a responsive size.'
+          ],
+          exampleLang: 'html',
+          example: '<button class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded md:text-lg">\n  Hover or resize me\n</button>',
+          sandbox: { type: 'tailwind', starter: { html: '<button class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">\n  Hover over me\n</button>' } }
+        },
+        {
+          id: 't5', title: 'Typography Utilities',
+          content: [
+            '`text-` sets font size on a scale, `text-sm`, `text-lg`, `text-2xl`, and larger. `font-` sets weight, `font-normal`, `font-medium`, `font-bold`.',
+            'Text color uses the same color palette as backgrounds, `text-gray-600`, `text-blue-600`, and so on. `text-center`, `text-left`, and `text-right` control alignment.',
+            '`leading-` controls line height and `tracking-` controls letter spacing, both useful for making a heading feel tighter or a paragraph easier to read.'
+          ],
+          exampleLang: 'html',
+          example: '<h2 class="text-2xl font-bold text-slate-800">\n  A Styled Heading\n</h2>\n<p class="text-sm text-slate-500">\n  Supporting text underneath.\n</p>',
+          sandbox: { type: 'tailwind', starter: { html: '<h2 class="text-2xl font-bold text-slate-800">\n  A Styled Heading\n</h2>\n<p class="text-sm text-slate-500">\n  Try changing the size, weight, or color classes.\n</p>' } }
+        },
+        {
+          id: 't6', title: 'Borders, Backgrounds, and Shadows',
+          content: [
+            '`border` adds a default border, and `border-2` or `border-4` set its thickness. Pair it with a color like `border-blue-500`.',
+            '`rounded` softens corners, from `rounded-sm` to `rounded-full` for a circle. `bg-` sets a solid background color.',
+            '`shadow-sm` through `shadow-xl` add depth with a drop shadow, a quick way to lift a card off the page.'
+          ],
+          exampleLang: 'html',
+          example: '<div class="border-2 border-blue-500 rounded-lg shadow-md p-4 bg-white">\n  A card with a border and shadow.\n</div>',
+          sandbox: { type: 'tailwind', starter: { html: '<div class="border-2 border-blue-500 rounded-lg shadow-md p-4 bg-white">\n  Try changing the border, radius, or shadow classes.\n</div>' } }
+        },
+        {
+          id: 't7', title: 'Building a Component',
+          content: [
+            'Real interfaces combine many utilities on one element. A card might need padding, a background, a border radius, a shadow, and typography utilities all at once.',
+            'Breaking a design into small questions helps, how much space around the content, what background and border, how should the text look, and does anything change on hover.',
+            'There is no single correct set of classes. Different combinations of spacing, color, and typography utilities can all produce a good-looking result.'
+          ],
+          exampleLang: 'html',
+          example: '<div class="max-w-sm p-6 bg-white rounded-lg shadow-md">\n  <h3 class="text-lg font-bold text-slate-800">Card Title</h3>\n  <p class="text-sm text-slate-500 mt-2">A short description goes here.</p>\n  <button class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded">Learn more</button>\n</div>',
+          sandbox: { type: 'tailwind', starter: { html: '<div class="max-w-sm p-6 bg-white rounded-lg shadow-md">\n  <h3 class="text-lg font-bold text-slate-800">Card Title</h3>\n  <p class="text-sm text-slate-500 mt-2">A short description goes here.</p>\n  <button class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded">Learn more</button>\n</div>' } }
+        }
+      ],
+      quiz: [
+        { question: 'In Tailwind, how is an element usually styled?', options: ['A custom CSS class in a separate file', 'Utility classes added directly to the HTML element', 'Inline style attributes only', 'Tailwind has no way to set color'], correct: 1, explanation: 'Tailwind is a utility-first framework: classes in the markup do the styling.' },
+        { question: 'What does `p-4` do?', options: ['Sets font size', 'Sets padding on all sides', 'Sets position to fixed', 'Sets a border width'], correct: 1, explanation: '`p-` is the padding utility prefix; `4` is a step on the spacing scale.' },
+        { question: 'Which class turns on flexbox layout?', options: ['layout-flex', 'flex', 'display-flex', 'box-flex'], correct: 1, explanation: '`flex` maps to `display: flex;`.' },
+        { question: 'What does the `hover:` prefix do?', options: ['Applies a style only above a screen size', 'Applies a style only while the mouse is over the element', 'Applies a style permanently', 'Removes the element on hover'], correct: 1, explanation: 'State prefixes like `hover:` apply their utility only during that state.' },
+        { question: 'What does `md:flex` mean?', options: ['Flex only below medium screens', 'Flex only at medium screens and wider', 'Flex only on mobile', 'It is invalid syntax'], correct: 1, explanation: 'Breakpoint prefixes apply their utility from that screen size upward.' },
+        { question: 'Which class sets a large, bold heading in Tailwind?', options: ['text-2xl font-bold', 'big-text strong', 'heading-lg', 'font-size-24'], correct: 0, explanation: '`text-` sets size and `font-` sets weight, combined directly as classes.' },
+        { question: 'Which class adds a drop shadow to an element?', options: ['border-md', 'shadow-md', 'rounded-md', 'ring-md'], correct: 1, explanation: '`shadow-` utilities add depth with a drop shadow.' },
+        { question: 'When combining utilities into one component, what decides the right set of classes?', options: ['There is exactly one correct combination', 'Only the color classes matter', 'Different combinations of spacing, color, and typography can all work', 'Utilities cannot be combined'], correct: 2, explanation: 'Many utility combinations can produce a good result; it is a design choice, not a single correct answer.' }
+      ]
+    },
+    {
       id: 'js', title: 'JavaScript Essentials', color: '#C9A227',
       description: 'Make pages react: variables, logic, and the DOM.',
       lessons: [
@@ -601,99 +694,6 @@
         { question: 'What does `.push(value)` do to an array?', options: ['Removes the first item', 'Adds a value to the end', 'Sorts the array', 'Empties the array'], correct: 1, explanation: '`.push` adds one or more values to the end of an array.' },
         { question: 'How do you read the `name` key on an object called `user`?', options: ['user->name', 'user.name', 'user::name', 'user(name)'], correct: 1, explanation: 'Dot notation, `user.name`, reads a key from an object.' },
         { question: 'What does `event.preventDefault()` do inside a form submit handler?', options: ['Deletes the form', 'Stops the browser from reloading the page', 'Cancels all future events', 'Clears the input fields'], correct: 1, explanation: 'It stops the default browser behavior for that event, such as a full page reload on submit.' }
-      ]
-    },
-    {
-      id: 'tailwind', title: 'Tailwind CSS', color: '#0EA5C4',
-      description: 'Style directly in your markup with utility classes.',
-      lessons: [
-        {
-          id: 't1', title: 'Utility-First Basics',
-          content: [
-            'Tailwind skips writing custom CSS files. Instead, elements are styled by adding utility classes directly in the HTML, `class="p-4 bg-blue-500 text-white"`.',
-            'Each utility does one small thing: `p-4` sets padding, `bg-blue-500` sets a background color, `text-white` sets text color. Many small classes combine instead of one invented class name.',
-            'This can feel verbose at first, but it means rarely leaving the HTML to make a style change.'
-          ],
-          exampleLang: 'html',
-          example: '<button class="px-4 py-2 bg-blue-500 text-white rounded">\n  Click me\n</button>',
-          sandbox: { type: 'tailwind', starter: { html: '<button class="px-4 py-2 bg-blue-500 text-white rounded">\n  Click me\n</button>' } }
-        },
-        {
-          id: 't2', title: 'Spacing and Sizing',
-          content: [
-            'Padding uses `p-` for all sides, `px-` and `py-` for horizontal and vertical, or `pt-`, `pr-`, `pb-`, `pl-` for one side. Margin works the same way with `m-`.',
-            'The number after the dash is a step on the spacing scale, not a pixel count directly. `p-4` is 1rem (16px), `p-8` is 2rem.',
-            'Width and height use `w-` and `h-`, including fractions like `w-1/2` for 50 percent and fixed steps like `w-64`.'
-          ],
-          exampleLang: 'html',
-          example: '<div class="w-64 p-6 m-4 bg-slate-100">\n  A box with width, padding, and margin.\n</div>',
-          sandbox: { type: 'tailwind', starter: { html: '<div class="w-64 p-6 m-4 bg-slate-100 rounded">\n  Try changing the width and padding classes.\n</div>' } }
-        },
-        {
-          id: 't3', title: 'Flexbox and Grid with Tailwind',
-          content: [
-            '`flex` turns on flexbox, the same as `display: flex;` in plain CSS. Pair it with `justify-between`, `items-center`, or `gap-4` to arrange children.',
-            '`grid` turns on CSS grid. `grid-cols-3` creates three equal columns, and `gap-4` spaces them out.',
-            'These map closely to plain CSS flexbox and grid properties. Tailwind is mostly a shorthand, not a new layout system.'
-          ],
-          exampleLang: 'html',
-          example: '<div class="flex justify-between items-center gap-4">\n  <div class="bg-sky-500 text-white p-4">One</div>\n  <div class="bg-sky-500 text-white p-4">Two</div>\n</div>',
-          sandbox: { type: 'tailwind', starter: { html: '<div class="flex justify-between items-center gap-4">\n  <div class="bg-sky-500 text-white p-4 rounded">One</div>\n  <div class="bg-sky-500 text-white p-4 rounded">Two</div>\n</div>' } }
-        },
-        {
-          id: 't4', title: 'Responsive Design and States',
-          content: [
-            'Prefix any utility with a breakpoint to apply it only at that size and above, `md:flex` turns on flex layout only on medium screens and wider.',
-            'State prefixes work the same way. `hover:bg-blue-700` changes the background only while hovering, and `focus:ring-2` adds a ring when an input is focused.',
-            'Because these are just classes, several can stack: `bg-blue-500 hover:bg-blue-700 md:text-lg` combines a base style, a hover state, and a responsive size.'
-          ],
-          exampleLang: 'html',
-          example: '<button class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded md:text-lg">\n  Hover or resize me\n</button>',
-          sandbox: { type: 'tailwind', starter: { html: '<button class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">\n  Hover over me\n</button>' } }
-        },
-        {
-          id: 't5', title: 'Typography Utilities',
-          content: [
-            '`text-` sets font size on a scale, `text-sm`, `text-lg`, `text-2xl`, and larger. `font-` sets weight, `font-normal`, `font-medium`, `font-bold`.',
-            'Text color uses the same color palette as backgrounds, `text-gray-600`, `text-blue-600`, and so on. `text-center`, `text-left`, and `text-right` control alignment.',
-            '`leading-` controls line height and `tracking-` controls letter spacing, both useful for making a heading feel tighter or a paragraph easier to read.'
-          ],
-          exampleLang: 'html',
-          example: '<h2 class="text-2xl font-bold text-slate-800">\n  A Styled Heading\n</h2>\n<p class="text-sm text-slate-500">\n  Supporting text underneath.\n</p>',
-          sandbox: { type: 'tailwind', starter: { html: '<h2 class="text-2xl font-bold text-slate-800">\n  A Styled Heading\n</h2>\n<p class="text-sm text-slate-500">\n  Try changing the size, weight, or color classes.\n</p>' } }
-        },
-        {
-          id: 't6', title: 'Borders, Backgrounds, and Shadows',
-          content: [
-            '`border` adds a default border, and `border-2` or `border-4` set its thickness. Pair it with a color like `border-blue-500`.',
-            '`rounded` softens corners, from `rounded-sm` to `rounded-full` for a circle. `bg-` sets a solid background color.',
-            '`shadow-sm` through `shadow-xl` add depth with a drop shadow, a quick way to lift a card off the page.'
-          ],
-          exampleLang: 'html',
-          example: '<div class="border-2 border-blue-500 rounded-lg shadow-md p-4 bg-white">\n  A card with a border and shadow.\n</div>',
-          sandbox: { type: 'tailwind', starter: { html: '<div class="border-2 border-blue-500 rounded-lg shadow-md p-4 bg-white">\n  Try changing the border, radius, or shadow classes.\n</div>' } }
-        },
-        {
-          id: 't7', title: 'Building a Component',
-          content: [
-            'Real interfaces combine many utilities on one element. A card might need padding, a background, a border radius, a shadow, and typography utilities all at once.',
-            'Breaking a design into small questions helps, how much space around the content, what background and border, how should the text look, and does anything change on hover.',
-            'There is no single correct set of classes. Different combinations of spacing, color, and typography utilities can all produce a good-looking result.'
-          ],
-          exampleLang: 'html',
-          example: '<div class="max-w-sm p-6 bg-white rounded-lg shadow-md">\n  <h3 class="text-lg font-bold text-slate-800">Card Title</h3>\n  <p class="text-sm text-slate-500 mt-2">A short description goes here.</p>\n  <button class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded">Learn more</button>\n</div>',
-          sandbox: { type: 'tailwind', starter: { html: '<div class="max-w-sm p-6 bg-white rounded-lg shadow-md">\n  <h3 class="text-lg font-bold text-slate-800">Card Title</h3>\n  <p class="text-sm text-slate-500 mt-2">A short description goes here.</p>\n  <button class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded">Learn more</button>\n</div>' } }
-        }
-      ],
-      quiz: [
-        { question: 'In Tailwind, how is an element usually styled?', options: ['A custom CSS class in a separate file', 'Utility classes added directly to the HTML element', 'Inline style attributes only', 'Tailwind has no way to set color'], correct: 1, explanation: 'Tailwind is a utility-first framework: classes in the markup do the styling.' },
-        { question: 'What does `p-4` do?', options: ['Sets font size', 'Sets padding on all sides', 'Sets position to fixed', 'Sets a border width'], correct: 1, explanation: '`p-` is the padding utility prefix; `4` is a step on the spacing scale.' },
-        { question: 'Which class turns on flexbox layout?', options: ['layout-flex', 'flex', 'display-flex', 'box-flex'], correct: 1, explanation: '`flex` maps to `display: flex;`.' },
-        { question: 'What does the `hover:` prefix do?', options: ['Applies a style only above a screen size', 'Applies a style only while the mouse is over the element', 'Applies a style permanently', 'Removes the element on hover'], correct: 1, explanation: 'State prefixes like `hover:` apply their utility only during that state.' },
-        { question: 'What does `md:flex` mean?', options: ['Flex only below medium screens', 'Flex only at medium screens and wider', 'Flex only on mobile', 'It is invalid syntax'], correct: 1, explanation: 'Breakpoint prefixes apply their utility from that screen size upward.' },
-        { question: 'Which class sets a large, bold heading in Tailwind?', options: ['text-2xl font-bold', 'big-text strong', 'heading-lg', 'font-size-24'], correct: 0, explanation: '`text-` sets size and `font-` sets weight, combined directly as classes.' },
-        { question: 'Which class adds a drop shadow to an element?', options: ['border-md', 'shadow-md', 'rounded-md', 'ring-md'], correct: 1, explanation: '`shadow-` utilities add depth with a drop shadow.' },
-        { question: 'When combining utilities into one component, what decides the right set of classes?', options: ['There is exactly one correct combination', 'Only the color classes matter', 'Different combinations of spacing, color, and typography can all work', 'Utilities cannot be combined'], correct: 2, explanation: 'Many utility combinations can produce a good result; it is a design choice, not a single correct answer.' }
       ]
     }
   ];
